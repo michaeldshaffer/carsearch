@@ -1,3 +1,23 @@
+const CARACCESSORIES = {
+    seats: "leather",
+    seatbelts: "autolocking",
+    wheels: "18in bronze alloy",
+    trim: "ELX",
+    headlights: "LED",
+    climate_control: "Tri-Zone",
+    moonroof: "one-touch power",
+    door_locks: "auto-locking",
+    ignition: "keyless",
+    starter: "remote-start",
+    interior_lighting: "TrailSport Ambient Lighting",
+    seats_power: "7-way adjustable",
+    seats_heat: "heated and ventilated",
+    tailgate: "Hands-Free Access Power Tailgate",
+    cargo_capacity: "50 cubic feet",
+    rear_storage: "underfloor",
+    seats_rear: "60/40 split"
+};
+
 // This function just creates a mock result object exclusively for this POC
 function makeMockSearchResult(carCount) {
     let ret = [];
@@ -9,6 +29,7 @@ function makeMockSearchResult(carCount) {
         car.model = makeModel();
         car.engine = makeEngine(car.model);
         car.color = makeColor();
+        car.accessories = CARACCESSORIES;
         ret.push(car);
     }
     return ret;

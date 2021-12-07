@@ -10,10 +10,12 @@
                 // While the bulk of this function is fairly representative, this line should be replaced by the actual method(s) that do the search
                 const searchResult = makeMockSearchResult(numberOfCarsToMock);
                 console.log(searchResult);
+                let resultString = JSON.stringify(searchResult);
+                document.getElementById('numOfChars').innerHTML = `Number of characters:  ${resultString.length}`;
                 document.getElementById('searchResults').value = JSON.stringify(searchResult, undefined, 2);
                 window.localStorage.removeItem('carsearchresult');
                 console.log('carsearch setting localstorage');
-                window.localStorage.setItem('carsearchresult', JSON.stringify(searchResult));
+                window.localStorage.setItem('carsearchresult', resultString);
             } else {
                 alert('NOPE')
             }
@@ -37,6 +39,8 @@
     <br />
     <br />
     <textarea id="searchResults" rows="10" cols="60"></textarea>
+    <br />
+    <div><label id="numOfChars">Number of characters:</label></div>
     <br />
     <button onclick="doReturn()" title="This returns the browser (and the car data) back to xyz.com">Return to
         xyz.com</button>
