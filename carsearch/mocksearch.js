@@ -1,7 +1,7 @@
 // This function just creates a mock result object exclusively for this POC
 function makeMockSearchResult(carCount) {
     let ret = [];
-    for (let ct = 0; ct < carCount; ct++){
+    for (let ct = 0; ct < carCount; ct++) {
         let car = {};
         car.id = makeString(3) + '-' + random6digits();
         car.vin = random6digits() + makeString(1) + random6digits() + makeString(7) + random6digits();

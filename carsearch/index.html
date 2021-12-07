@@ -1,54 +1,45 @@
 <html>
-    <head>
-        <link rel="icon" href="data:;base64,=">
-        <script src="mocksearch.js"></script>
-        <script lang="javascript">
-            
-            window.addEventListener('message',function(event){
-                if(event.origin === 'http://xyz.com'){
-                    console.log('carsearch message received: ' + event.data);
-                    if(event.data === 'Send' && window.localStorage.getItem('carsearchresult')){
-                        console.log('carsearch sending message: data out of localstorage');
-                        window.parent.postMessage(window.localStorage.getItem('carsearchresult'),'http://xyz.com');
-                        window.localStorage.removeItem('carsearchresult');
-                    } else {
-                        console.log('carsearch not sending a message/nothing in localstorage');
-                    }
-                }
-            })
 
-            function doSearch(){
-                const numberOfCarsToMock = document.getElementById('search').value;
-                if(numberOfCarsToMock.length > 0 && !isNaN(numberOfCarsToMock*1)){
-                    // While the bulk of this function is fairly representative, this line should be replaced by the actual method(s) that do the search
-                    const searchResult = makeMockSearchResult(numberOfCarsToMock);
-                    console.log(searchResult);
-                    document.getElementById('searchResults').value = JSON.stringify(searchResult, undefined, 2);
-                    window.localStorage.removeItem('carsearchresult');
-                    console.log('carsearch setting localstorage');
-                    window.localStorage.setItem('carsearchresult',JSON.stringify(searchResult));
-                } else {
-                    alert('NOPE')
-                }
+<head>
+    <link rel="icon" href="data:;base64,=">
+    <script src="mocksearch.js"></script>
+    <script lang="javascript">
+        function doSearch() {
+            const numberOfCarsToMock = document.getElementById('search').value;
+            if (numberOfCarsToMock.length > 0 && !isNaN(numberOfCarsToMock * 1)) {
+                // While the bulk of this function is fairly representative, this line should be replaced by the actual method(s) that do the search
+                const searchResult = makeMockSearchResult(numberOfCarsToMock);
+                console.log(searchResult);
+                document.getElementById('searchResults').value = JSON.stringify(searchResult, undefined, 2);
+                window.localStorage.removeItem('carsearchresult');
+                console.log('carsearch setting localstorage');
+                window.localStorage.setItem('carsearchresult', JSON.stringify(searchResult));
+            } else {
+                alert('NOPE')
             }
+        }
 
-            function doReturn(){
-                console.log('carsearch returning')
-                window.location = 'http://xyz.com';
-            }
+        function doReturn() {
+            console.log('carsearch returning')
+            window.location = 'http://xyz.com';
+        }
 
-        </script>
-    </head>
-    <body style="background-color: powderblue;">
-        Welcome to Car Search
-        <br/>
-        <br/>
-        <input type="text" id="search" placeholder="number of mock cars"/>
-        <button style="margin-left: 20px" onclick="doSearch()" title="Since this is mocked version, this generates a number of cars to test with.  In a real version, this would be a true backend search.">Search</button>
-        <br/>
-        <br/>
-        <textarea id="searchResults"  rows="10" cols="60"></textarea>
-        <br/>
-        <button onclick="doReturn()" title="This returns the browser (and the car data) back to xyz.com">Return to xyz.com</button> 
-    </body>
+    </script>
+</head>
+
+<body style="background-color: powderblue;">
+    Welcome to Car Search
+    <br />
+    <br />
+    <input type="text" id="search" placeholder="number of mock cars" />
+    <button style="margin-left: 20px" onclick="doSearch()"
+        title="Since this is mocked version, this generates a number of cars to test with.  In a real version, this would be a true backend search.">Search</button>
+    <br />
+    <br />
+    <textarea id="searchResults" rows="10" cols="60"></textarea>
+    <br />
+    <button onclick="doReturn()" title="This returns the browser (and the car data) back to xyz.com">Return to
+        xyz.com</button>
+</body>
+
 </html>

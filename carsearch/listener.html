@@ -1,0 +1,25 @@
+<html>
+
+<head>
+    <link rel="icon" href="data:;base64,=">
+    <script lang="javascript">
+        window.addEventListener('message', function (event) {
+            if (event.origin === 'http://xyz.com') {
+                console.log('carsearch message received: ' + event.data);
+                if (event.data === 'Send' && window.localStorage.getItem('carsearchresult')) {
+                    console.log('carsearch sending message: data out of localstorage');
+                    window.parent.postMessage(window.localStorage.getItem('carsearchresult'), 'http://xyz.com');
+                    window.localStorage.removeItem('carsearchresult');
+                } else {
+                    console.log('carsearch not sending a message/nothing in localstorage');
+                }
+            }
+        })
+    </script>
+</head>
+
+<body>
+    Car Search Listener
+</body>
+
+</html>
