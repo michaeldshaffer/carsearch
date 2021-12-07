@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <link rel="icon" href="data:;base64,=">
+        <script lang="text/javascript">
+            const SEARCHURL = 'http://carsearch.com';
+
+            function postSend(){
+                console.log('xyz post message: Send');
+                document.getElementById('ifr').contentWindow.postMessage('Send',SEARCHURL);
+            };
+            
+            window.addEventListener('message',function(event){
+                if(event.origin === SEARCHURL){
+                    console.log('xyz message recieved: ' + event.data.length + ' chars')
+                    let res = JSON.parse(event.data);
+                    let carStr = '';
+                    res.forEach(car => {
+                        carStr += `${car.id}:  ${car.make} ${car.model}, vin: ${car.vin} \r\n`;
+                    });
+                    document.getElementById('cars').value = carStr;
+                    document.getElementById('numOfCars').innerHTML = `Number of cars:  ${res.length}`;
+                    console.log(res)
+                }
+            });
+
+
+        </script>
+    </head>
+    <body style="background-color: pink;">
+        XYZ Company
+        <br/>
+        <br/>
+        <a id="searchLink" href="http://carsearch.com">Search for cars!</a>
+        <br/>
+        <br/> 
+        
+        <textarea id="cars"  rows="9" cols="60"></textarea>
+        <div><label id="numOfCars">Number of cars:</label></div>
+        <iframe src="http://carsearch.com" onload="postSend()" style="display:none;" id="ifr" aria-hidden="true"></iframe>
+
+    </body>
+</html>
+
