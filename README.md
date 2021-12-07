@@ -9,6 +9,6 @@ If you follow my setup or your own, you'll point the domain xyz.com to the conte
 # What this does
 
 # TODO's
-1. It would be the right design to eliminate all the hard coded versions of domains/URLs and have them only pushed in by querystring or some sort of environment variable.
-2. Wouldn't hurt to do one of these in React/Angular/something...
-3. The carsearch.com single page should probably be split into a search page and a helper page that just handles the event listening/message sending.
+- [ ] It would be the right design to eliminate all the hard coded versions of domains/URLs and have them only pushed in by querystring or some sort of environment variable.
+- [ ] Wouldn't hurt to do one of these in React/Angular/something...
+- [ ] The carsearch.com single page should probably be split into a search page and a helper page that just handles the event listening/message sending.
